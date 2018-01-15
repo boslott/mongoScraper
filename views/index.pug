@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  section.hero
+    .container.text-center
+      .row.text-center
+        .col-md-12
+            a.hero-brand(href="/" title="Home")
+              .fa-3x
+                span.fa-layers.fa-fw
+                  i.far.fa-circle.fa-lg
+                  i.fas.fa-list-alt.fa-xs.text-white(data-fa-transform='right-1')
+                | &nbsp; MS
+        .col-md-12
+            h1 Mongo Scraper
+      .row
+        .col-md-12
+          p.tagline A powerful app to scrape the top news from the web
+          a.btn.btn-outline-primary(href="#articleListing") Get Started Now
+
+  include includes/siteNav
+
+  section.testing(id='articleListing')
+    .container
+      .row#scrapeResult
+        p &nbsp;
+        if !articles.length
+          p#noScrape Currently: 😢 No articles → Press the scrape button to retrieve articles 😜 😜 😜
+        else
+          each article in articles
+            .container.mb-3
+              .row.justify-content-center
+                .card.w-75
+                  - const imgSrc = article.photo.slice(0,8).concat(article.photo.substr(12))
+                  //- img.card-img-top(src=imgSrc height="300")
+                  .card-body.p-0.pr-2
+                    .row.p-0
+                      .col-sm-2.p-0
+                        img(src=imgSrc)
+                      .col-sm-10
+                        .row
+                          .col-sm-12
+                            h5.card-title #{article.title}
+                        .row.mb-3
+                          .col-sm-4
+                            a(href=article.link) Click Here For Article
+                          .col-sm-4
+                            a.btn.btn-primary.btn-sm.text-white(href=`/favorited/${article._id}`) Save To Favorites
+                          .col-sm-4
+                            a.btn.btn-primary.btn-sm.text-white(href=`/delete/${article._id}`) Delete From Articles
+                      
+                      
+              
+        
+

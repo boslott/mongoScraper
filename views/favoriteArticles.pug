@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  include includes/siteNav
+  each article in articles
+    .container.my-3
+      .row.justify-content-center
+        .card.w-75
+          - const imgSrc = article.photo.slice(0,8).concat(article.photo.substr(12))
+          //- img.card-img-top(src=imgSrc height="300")
+          .card-body.p-0.pr-2
+            .row.p-0
+              .col-sm-2.p-0
+                img(src=imgSrc)
+              .col-sm-10
+                .row
+                  .col-sm-12
+                    h5.card-title #{article.title}
+                .row.mb-3
+                  .col-sm-4
+                    a(href=article.link) Click Here For Article
+                  .col-sm-4
+                    a.btn.btn-primary.btn-sm.text-white(href=`/unfavorited/${article._id}`) Remove From Favorites
+                  .col-sm-4
+                    button#addNoteBtn.btn.btn-primary.btn-sm.text-white(data-toggle='modal' data-target='#noteModal') Add A Note
+
+  .modal.fade#noteModal(tabindex='-1' role='dialog' aria-labelledby='noteModalLabel' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5#noteModalLabel.modal-title Modal title
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;

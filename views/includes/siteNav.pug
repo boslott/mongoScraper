@@ -1,0 +1,15 @@
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+    a.navbar-brand(href='/')
+      .fa-2x
+        span.fa-layers.fa-fw
+          i.far.fa-circle.fa-lg
+          i.fas.fa-list-alt.fa-xs(data-fa-transform='right-1')
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav
+        each item in h.menu
+            li.nav-item(class=(currentPath.endsWith(item.slug) ? 'active' : ''))
+              a.nav-link(href=item.slug alt=`${item.title}`) #{item.title}
+        a#scrapeBtn.btn.btn-primary(href='/scrape') Scrape!
