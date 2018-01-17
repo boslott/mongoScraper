@@ -1,33 +1,34 @@
 extends layout
 
+include mixins/_noteModal
+
 block content
   include includes/siteNav
   each article in articles
     .container.my-3
       .row.justify-content-center
-        .card.w-75
-          - const imgSrc = article.photo.slice(0,8).concat(article.photo.substr(12))
-          //- img.card-img-top(src=imgSrc height="300")
+        .card.w-75.border.border-secondary.rounded
           .card-body.p-0.pr-2
             .row.p-0
               .col-sm-2.p-0
-                img(src=imgSrc)
+                img(src=`${article.photo}` width='140')
               .col-sm-10
                 .row
-                  .col-sm-12
+                  .col-sm-12.mt-3
                     h5.card-title #{article.title}
                 .row.mb-3
+                  .col-sm-3
+                    a(href=article.link target='_blank') Click Here For Article
+                  .col-sm-2
+                    button.btn.btn-primary.btn-sm.text-white.border.border-dark.rounded(id=`addNoteBtn-${article._id}` data-toggle='modal' data-target=`#noteModal-${article._id}`) Add A Note
+                  .col-sm-3
+                    a.btn.btn-primary.btn-sm.text-white.w-75.border.border-dark.rounded(id=`addNoteBtn-${article._id}` href=`/all-notes/${article._id}`) View All Notes
                   .col-sm-4
-                    a(href=article.link) Click Here For Article
-                  .col-sm-4
-                    a.btn.btn-primary.btn-sm.text-white(href=`/unfavorited/${article._id}`) Remove From Favorites
-                  .col-sm-4
-                    button#addNoteBtn.btn.btn-primary.btn-sm.text-white(data-toggle='modal' data-target='#noteModal') Add A Note
+                    a.btn.btn-danger.btn-sm.text-white.border.border-dark.rounded(href=`/unfavorited/${article._id}`)
+                      i.fas.fa-times
+                      | &nbsp; Remove From Favorites
 
-  .modal.fade#noteModal(tabindex='-1' role='dialog' aria-labelledby='noteModalLabel' aria-hidden='true')
-    .modal-dialog(role='document')
-      .modal-content
-        .modal-header
-          h5#noteModalLabel.modal-title Modal title
-          button.close(type='button' data-dismiss='modal' aria-label='Close')
-            span(aria-hidden='true') &times;
+    +noteModal(article, 'favList')
+
+
+

@@ -4,7 +4,11 @@ mongoose.Promise = global.Promise;
 
 const noteSchema = new mongoose.Schema({
   title: String,
-  body: String
+  body: String,
+  created: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 const Note = mongoose.model('Note', noteSchema);

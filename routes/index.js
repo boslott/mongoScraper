@@ -1,14 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const siteController = require('../controllers/siteController');
+const articleController = require('../controllers/articleController');
+const noteController = require('../controllers/noteController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 
-router.get('/', siteController.home);
-router.get('/scrape', siteController.scrape);
-router.get('/favorite-articles', catchErrors(siteController.getFavoriteArticles));
-router.get('/delete/:id', siteController.deleteArticleFromList);
-router.get('/favorited/:id', catchErrors(siteController.favorited));
-router.get('/unfavorited/:id', catchErrors(siteController.unfavorited));
+router.get('/', articleController.home);
+router.get('/scrape/:site', catchErrors(articleController.scrape));
+router.get('/favorite-articles', catchErrors(articleController.getFavoriteArticles));
+router.get('/delete/:id', articleController.deleteArticleFromList);
+router.get('/favorited/:id', catchErrors(articleController.favorited));
+router.get('/unfavorited/:id', catchErrors(articleController.unfavorited));
+
+router.post('/favorite-articles/:id/:src', catchErrors(noteController.addNote));
+router.get('/all-notes/:id', catchErrors(noteController.allNotes));
+router.post('/all-notes/:noteId/:articleId', catchErrors(noteController.updateNote));
+router.get('/deleteNote/:noteId/:articleId', catchErrors(noteController.deleteNote));
 
 module.exports = router;

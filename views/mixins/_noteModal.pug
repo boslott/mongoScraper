@@ -1,0 +1,19 @@
+mixin noteModal(article = {}, src = '')
+  .modal.fade(id=`noteModal-${article._id}` tabindex='-1' role='dialog' aria-labelledby=`noteModalLabel-${article._id}` aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title.text-center(id=`noteModalLabel-${article._id}`) Add Note To Article: <br/> #{article.title}
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          form(action=`/favorite-articles/${article._id}/${src}` method='POST')
+            .form-group
+              label(for='title') Note Title
+              input.form-control(name='title')
+            .form-group
+              label(for='title') Note Content
+              textarea.w-100.form-control(name='body')
+            .row.modal-footer
+              button.btn.btn-primary.btn-sm(type='submit') Save Note
+              button.btn.btn-secondary.btn-sm(data-dismiss='modal') Close

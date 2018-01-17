@@ -1,6 +1,10 @@
 
 .testing {
-  min-height: 30rem;
+  min-height: 40rem;
+}
+
+body {
+  background-image: url('/images/concrete_seamless.png');
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -113,7 +117,7 @@ a:hover {
 .hero {
   display: table;
   position: relative;
-  background-image: url('/images/newsBG.jpg');
+  background-image: url('/images/triBG.jpg');
   background-size: cover;
   padding: 150px 0;
   color: #fff;

@@ -16763,7 +16763,42 @@ __webpack_require__(4);
 
 __webpack_require__(2);
 
+__webpack_require__(15);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var $ = __webpack_require__(0);
+
+$(document).ready(function () {
+  var site = '';
+
+  $('#scrape-options').change(function () {
+    site = $(this).val();
+    console.log(site);
+    $('#scrapeBtn').attr('href', '/scrape/' + site);
+  });
+
+  $('#scrapeBtn').on('click', function () {
+    if ($('#scrape-options').val() === 'choose') {
+      $('#noScrape').append('<br /><br />🛑 🛑 🛑 You must first choose a news site from the right-side dropdown menu 🔥 🔥 ');
+    }
+  });
+});
 
 /***/ })
 /******/ ]);

@@ -11,13 +11,15 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: 'Please provide a link'
   },
-  note: {
+  notes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Note'
-  },
+  }],
   photo: String,
   favorited: false
 });
+
+
 
 const Article = mongoose.model('Article', articleSchema);
 

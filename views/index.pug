@@ -5,18 +5,18 @@ block content
     .container.text-center
       .row.text-center
         .col-md-12
-            a.hero-brand(href="/" title="Home")
+            a.hero-brand(href="/" title="Home").m-0.p-0
               .fa-3x
-                span.fa-layers.fa-fw
+                span.fa-layers.fa-fw.m-o
                   i.far.fa-circle.fa-lg
                   i.fas.fa-list-alt.fa-xs.text-white(data-fa-transform='right-1')
-                | &nbsp; MS
-        .col-md-12
-            h1 Mongo Scraper
+                | &nbsp; MNS
+              //- .col-md-12
+            h1 Multisport News Scraper
       .row
         .col-md-12
-          p.tagline A powerful app to scrape the top news from the web
-          a.btn.btn-outline-primary(href="#articleListing") Get Started Now
+          p.tagline A powerful app to gather the latest in swimming, cycling, running, and triathlon news
+          a.btn.btn-outline-primary(href="#articleListing") Get Started Now ↓
 
   include includes/siteNav
 
@@ -30,24 +30,26 @@ block content
           each article in articles
             .container.mb-3
               .row.justify-content-center
-                .card.w-75
-                  - const imgSrc = article.photo.slice(0,8).concat(article.photo.substr(12))
+                .card.w-75.border.border-secondary.rounded
+                  //- - const imgSrc = article.photo.slice(0,8).concat(article.photo.substr(12))
                   //- img.card-img-top(src=imgSrc height="300")
                   .card-body.p-0.pr-2
                     .row.p-0
                       .col-sm-2.p-0
-                        img(src=imgSrc)
+                        img(src=`${article.photo}` width='140')
                       .col-sm-10
                         .row
                           .col-sm-12
                             h5.card-title #{article.title}
                         .row.mb-3
                           .col-sm-4
-                            a(href=article.link) Click Here For Article
+                            a(href=article.link target='_blank') Click Here For Article
                           .col-sm-4
                             a.btn.btn-primary.btn-sm.text-white(href=`/favorited/${article._id}`) Save To Favorites
                           .col-sm-4
-                            a.btn.btn-primary.btn-sm.text-white(href=`/delete/${article._id}`) Delete From Articles
+                            a.btn.btn-danger.btn-sm.text-white(href=`/delete/${article._id}`) 
+                              i.fas.fa-times
+                              | &nbsp; Delete From Articles
                       
                       
               

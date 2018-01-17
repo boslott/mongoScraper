@@ -1,0 +1,45 @@
+extends layout
+
+include mixins/_noteModal
+
+block content
+  include includes/siteNav
+  .container.my-3
+    .row.justify-content-center
+      .card.w-75.border.border-secondary.rounded
+        .card-body.p-0.pr-2
+          .row.p-0
+            .col-sm-2.p-0
+              img(src=`${article.photo}` width="140")
+            .col-sm-10
+              .row
+                .col-sm-12.mt-3
+                  h5.card-title #{article.title}
+              .row.mb-3
+                .col-sm-3
+                  a(href=article.link target='_blank') Click Here For Article
+                .col-sm-3
+                  button.btn.btn-primary.btn-sm.text-white.w-75.ml-4.border.border-dark.rounded(id=`addNoteBtn-${article._id}` data-toggle='modal' data-target=`#noteModal-${article._id}`) Add A Note
+                .col-sm-3
+                  a.btn.btn-danger.btn-sm.text-white.border.border-dark.rounded(href=`/unfavorited/${article._id}`) Remove From Favorites
+
+    +noteModal(article, 'single')
+
+  .container.my-3
+    .row.justify-content-center
+      each note in article.notes
+        if note !== null
+          .col-sm-6
+            .card.border.border-secondary.rounded.my-3
+              .card-body.pb-0
+                form(action=`/all-notes/${note._id}/${article._id}` method='POST')
+                  .form-group
+                    label(for='title') Title
+                    input.form-control(name='title' value=(note.title === null ? '' : note.title))
+                  .form-group
+                    label(for='body') Content
+                    textarea.form-control(name='body')= note.body
+                  p Created on: #{note.created}
+                  .row.card-footer.justify-content-around
+                    button.btn.btn-primary.btn-sm(type='submit') Update Note
+                    a.btn.btn-danger.btn-sm(href=`/deleteNote/${note._id}/${article._id}`) Delete Note

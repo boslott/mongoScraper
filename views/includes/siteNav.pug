@@ -1,5 +1,5 @@
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
     a.navbar-brand(href='/')
       .fa-2x
         span.fa-layers.fa-fw
@@ -12,4 +12,13 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
         each item in h.menu
             li.nav-item(class=(currentPath.endsWith(item.slug) ? 'active' : ''))
               a.nav-link(href=item.slug alt=`${item.title}`) #{item.title}
-        a#scrapeBtn.btn.btn-primary(href='/scrape') Scrape!
+      if currentPath.endsWith('/') 
+        a#scrapeBtn.btn.btn-primary.text-white Get News!
+    select.nav-item.dropdown#scrape-options
+      a.nav-link.dropdown-toggle(data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Choose Your News
+      .dropdown-menu 
+        option.dropdown-item(value='choose') Choose Your News
+        option.dropdown-item(value='swimswam') Swimming: SwimSwam.com
+        option.dropdown-item(value='velonews') Cycling: VeloNews.com
+        option.dropdown-item(value='runnersworld') Running: RunnersWorld.com
+        option.dropdown-item(value='triathlete') Triathlon: Triathlete.com
