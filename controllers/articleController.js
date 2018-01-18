@@ -7,10 +7,9 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 exports.home = (req, res) => {
   Article
-    .find({})
+    .find({}).sort([['_id', -1]])
     .then( articles => {
-
-      res.render('index', { title: 'Mongo Scraper by Bo Slott ', articles, site: 'choose' });
+      res.render('index', { title: 'Multisport News Scraper by Bo Slott ', articles, site: 'choose' });
     })
     .catch(function(err) {
       // If an error occurred, send it to the client
@@ -39,6 +38,7 @@ const scrapeSwim = (res) => {
       result.photo = $(this)
         .find('img')
         .attr('src');
+      result.category = 'swimming';
       
         saveArticles(result);
         console.log('swim scraping complete')
@@ -68,6 +68,7 @@ const scrapeTriathlete = (res) => {
       result.photo = $(this)
         .find('img')
         .attr('data-original')
+      result.category = 'triathlon';
       
         saveArticles(result);
     });
@@ -97,6 +98,7 @@ const scrapeRunnersWorld = (res) => {
       result.photo = $(this)
         .find('img')
         .attr('src')
+      result.category = 'running';
       
         saveArticles(result);
     });
@@ -127,6 +129,7 @@ const scrapeVeloNews = (res) => {
       result.photo = $(this)
         .find('img')
         .attr('src')
+      result.category = 'cycling';
       
         saveArticles(result);
         console.log(result)
@@ -212,6 +215,8 @@ exports.unfavorited = async (req, res) => {
   ).exec();
   res.redirect('/favorite-articles');
 };
+
+
 
 
 

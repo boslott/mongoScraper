@@ -1,4 +1,5 @@
 extends layout
+include mixins/_scrapedModal
 
 block content
   section.hero
@@ -19,20 +20,30 @@ block content
           a.btn.btn-outline-primary(href="#articleListing") Get Started Now ↓
 
   include includes/siteNav
+  +scrapedModal()
 
-  section.testing(id='articleListing')
+  section.article-section#articleListing
     .container
-      .row#scrapeResult
-        p &nbsp;
+      .row#scrapeResult.d-flex.justify-content-center
+        //- p &nbsp;
         if !articles.length
-          p#noScrape Currently: 😢 No articles → Press the scrape button to retrieve articles 😜 😜 😜
+          #noScrape.text-dark.text-center
+            h2.text-center.mb-4 Welcome to the Multisport News Scraper!
+            h4.text-center Currently, there are no articles in the database. To get articles:
+            ul.no-bullets.text-center
+              li
+                h4 Choose which sport you would like articles about by picking from the menu in the upper right, then
+              li
+                h4 Click the 'Get News' button in the upper left 
         else
+          .row
+            .col-sm-12
+              p.m-3 &nbsp;
+
           each article in articles
             .container.mb-3
               .row.justify-content-center
                 .card.w-75.border.border-secondary.rounded
-                  //- - const imgSrc = article.photo.slice(0,8).concat(article.photo.substr(12))
-                  //- img.card-img-top(src=imgSrc height="300")
                   .card-body.p-0.pr-2
                     .row.p-0
                       .col-sm-2.p-0
@@ -50,8 +61,6 @@ block content
                             a.btn.btn-danger.btn-sm.text-white(href=`/delete/${article._id}`) 
                               i.fas.fa-times
                               | &nbsp; Delete From Articles
-                      
-                      
-              
-        
+
+
 

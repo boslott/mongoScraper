@@ -1,0 +1,15 @@
+mixin scrapedModal()
+  #scrapedModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='scrapedModalLabel' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5.modal-title#scrapedModalLabel Articles Scraped!
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          h6 New articles have been added to the database!
+        .modal-footer
+          a#scrapedModalBtn.btn.btn-secondary(type='button') Close
+
+
+

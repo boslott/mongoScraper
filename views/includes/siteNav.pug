@@ -13,7 +13,15 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
             li.nav-item(class=(currentPath.endsWith(item.slug) ? 'active' : ''))
               a.nav-link(href=item.slug alt=`${item.title}`) #{item.title}
       if currentPath.endsWith('/') 
-        a#scrapeBtn.btn.btn-primary.text-white Get News!
+        a#scrapeBtn.btn.btn-primary.text-white() Get News!
+    //- btn-group.dropdown.mr-4
+    //-   button.btn.btn-secondary.dropdown-toggle(type="button" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Sort
+    //-   .dropdown-menu
+    //-     a.dropdown-item.list-group-item-light(href='/sort/all' alt='Sort All Articles') All
+    //-     a.dropdown-item.list-group-item-light(href='/sort/swimming' alt='Sort Swimming Articles') Swimming
+    //-     a.dropdown-item.list-group-item-light(href='/sort/cycling' alt='Sort Cycling Articles') Cycling
+    //-     a.dropdown-item.list-group-item-light(href='/sort/running' alt='Sort Running Articles') Running
+    //-     a.dropdown-item.list-group-item-light(href='/sort/triathlon' alt='Sort Triathlon Articles') Triathlon
     select.nav-item.dropdown#scrape-options
       a.nav-link.dropdown-toggle(data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Choose Your News
       .dropdown-menu 

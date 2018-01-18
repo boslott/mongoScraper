@@ -11,6 +11,7 @@ router.get('/favorite-articles', catchErrors(articleController.getFavoriteArticl
 router.get('/delete/:id', articleController.deleteArticleFromList);
 router.get('/favorited/:id', catchErrors(articleController.favorited));
 router.get('/unfavorited/:id', catchErrors(articleController.unfavorited));
+router.get('/sort/:category', catchErrors(articleController.sortArticles));
 
 router.post('/favorite-articles/:id/:src', catchErrors(noteController.addNote));
 router.get('/all-notes/:id', catchErrors(noteController.allNotes));

@@ -16,7 +16,8 @@ const articleSchema = new mongoose.Schema({
     ref: 'Note'
   }],
   photo: String,
-  favorited: false
+  favorited: false,
+  category: String
 });
 
 
