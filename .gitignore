@@ -3,6 +3,7 @@ node_modules/
 *.log
 .idea
 haters/
-variables.env
+variablesDev.env
+variablesProd.env
 variables.env.now
 packageDev.json
